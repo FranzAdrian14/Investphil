@@ -8,7 +8,7 @@ try {
     $query = 'SELECT *
                 FROM tbl_houses
                 INNER JOIN tbl_categories ON tbl_houses.category_id = tbl_categories.category_id
-                ORDER BY category ASC AND house_no ASC;';
+                ORDER BY category AND house_no ASC;';
     
     $statement = $connection->prepare($query);
     if($statement->execute()) {

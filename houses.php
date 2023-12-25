@@ -4,8 +4,10 @@ require_once('Controller/CategoryController.php');
 require_once('Controller/HouseController.php');
 include('db_connect.php');
 require_once('Layout/header.php');
+
+include 'navbar.php';
+include 'topbar.php';
 ?>
-<p?>
 	
 <div class="container-fluid">
 	
@@ -13,7 +15,12 @@ require_once('Layout/header.php');
 		<div class="row">
 			<!-- FORM Panel -->
 			<div class="col-md-4">
-			<form action="" id="manage-house">
+			<form action="#" id="manage-house" method="post">
+				<?php if($messageFailed): ?>
+				<div class="alert alert-danger">
+					<?php echo $messageFailed; ?>
+				</div>
+				<?php endif; ?>
 				<div class="card">
 					<div class="card-header">
 						    House Form
