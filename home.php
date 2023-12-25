@@ -41,7 +41,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <?php echo "Welcome  ". $_SESSION['login_name']."!"  ?>
+                    <?php echo "Welcome  ". $_SESSION['full_name']."!"  ?>
                     <hr>
                     <div class="row">
                         <div class="col-md-4 mb-3">

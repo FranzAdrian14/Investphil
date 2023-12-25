@@ -1,4 +1,8 @@
-<?php include 'db_connect.php' ?>
+<?php 
+require_once('Controller/CheckAuthController.php');
+include 'db_connect.php';
+require_once('Layout/header.php');
+?>
 <style>
 	.on-print{
 		display: none;
@@ -112,3 +116,4 @@
 		location.href = 'index.php?page=payment_report&'+$(this).serialize()
 	})
 </script>
+<?php require_once('Layout/footer.php'); ?>

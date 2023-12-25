@@ -1,4 +1,11 @@
-<?php include('db_connect.php');?>
+<?php
+require_once('Controller/CheckAuthController.php');
+include('db_connect.php');
+require_once('Layout/header.php');
+?>
+
+<?php include 'topbar.php' ?>
+<?php include 'navbar.php' ?>
 
 <div class="container-fluid">
 	
@@ -16,7 +23,7 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Client</b>
-						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_client">
+						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="manage_tenant.php" id="new_client">
 					<i class="fa fa-plus"></i> New Client
 				</a></span>
 					</div>
@@ -99,22 +106,22 @@
 		$('table').dataTable()
 	})
 	
-	$('#new_client').click(function(){
-		uni_modal("New Client","manage_tenant.php","mid-large")
-		
-	})
-
-	$('.view_payment').click(function(){
-		uni_modal("Tenants Payments","view_payment.php?id="+$(this).attr('data-id'),"large")
-		
-	})
-	$('.edit_tenant').click(function(){
-		uni_modal("Manage Tenant Details","manage_tenant.php?id="+$(this).attr('data-id'),"mid-large")
-		
-	})
-	$('.delete_tenant').click(function(){
-		_conf("Are you sure to delete this Tenant?","delete_tenant",[$(this).attr('data-id')])
-	})
+	// $('#new_client').click(function(){
+	// 	uni_modal("New Client","manage_tenant.php","mid-large")
+	// 	
+	// })
+// 
+	// $('.view_payment').click(function(){
+	// 	uni_modal("Tenants Payments","view_payment.php?id="+$(this).attr('data-id'),"large")
+	// 	
+	// })
+	// $('.edit_tenant').click(function(){
+	// 	uni_modal("Manage Tenant Details","manage_tenant.php?id="+$(this).attr('data-id'),"mid-large")
+	// 	
+	// })
+	// $('.delete_tenant').click(function(){
+	// 	_conf("Are you sure to delete this Tenant?","delete_tenant",[$(this).attr('data-id')])
+	// })
 	
 	function delete_tenant($id){
 		start_load()
@@ -134,3 +141,4 @@
 		})
 	}
 </script>
+<?php require_once('Layout/footer.php'); ?>

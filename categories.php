@@ -1,4 +1,12 @@
+<?php require_once('Controller/CheckAuthController.php'); ?>
+<?php require_once('Controller/CategoryController.php'); ?>
 <?php include('db_connect.php');?>
+<?php require_once('Layout/header.php'); ?>
+
+<title>PHILINVEST | Categories</title>
+
+<?php include 'topbar.php' ?>
+<?php include 'navbar.php' ?>
 
 <div class="container-fluid">
 	
@@ -6,7 +14,7 @@
 		<div class="row">
 			<!-- FORM Panel -->
 			<div class="col-md-4">
-			<form action="" id="manage-category">
+			<form action="#" method="post" id="manage-category">
 				<div class="card">
 					<div class="card-header">
 						    Category Form
@@ -14,15 +22,24 @@
 					<div class="card-body">
 							<input type="hidden" name="id">
 							<div class="form-group">
+								<?php if($messageSuccess): ?>
+								<div class="alert alert-success">
+									<?php echo $messageSuccess; ?>
+								</div>
+								<?php elseif($messageFailed): ?>
+								<div class="alert alert-danger">
+									<?php echo $messageFailed; ?>
+								</div>
+								<?php endif; ?>
 								<label class="control-label">Name</label>
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="category">
 							</div>
 					</div>
 							
 					<div class="card-footer">
 						<div class="row">
 							<div class="col-md-12">
-								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
+								<button type="submit" class="btn btn-sm btn-primary col-sm-3 offset-md-3" name="save"> Save</button>
 								<button class="btn btn-sm btn-default col-sm-3" type="button" onclick="$('#manage-category').get(0).reset()"> Cancel</button>
 							</div>
 						</div>
@@ -141,3 +158,4 @@
 	}
 	$('table').dataTable()
 </script>
+<?php require_once('Layout/footer.php'); ?>

@@ -1,5 +1,10 @@
 <?php 
-include 'db_connect.php'; 
+require_once('Controller/CheckAuthController.php');
+
+include 'db_connect.php';
+
+require_once('Layout/header.php');
+
 if(isset($_GET['id'])){
 $qry = $conn->query("SELECT * FROM tenants where id= ".$_GET['id']);
 foreach($qry->fetch_array() as $k => $val){
@@ -7,6 +12,9 @@ foreach($qry->fetch_array() as $k => $val){
 }
 }
 ?>
+
+<?php include 'topbar.php' ?>
+<?php include 'navbar.php' ?>
 <div class="container-fluid">
 	<form action="" id="manage-tenant">
 		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -80,3 +88,4 @@ foreach($qry->fetch_array() as $k => $val){
 		})
 	})
 </script>
+<?php require_once('Layout/footer.php'); ?>

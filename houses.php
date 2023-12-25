@@ -1,4 +1,7 @@
-<?php include('db_connect.php');?>
+<?php 
+require_once('Controller/CheckAuthController.php');
+include('db_connect.php');
+?>
 <p?>
 	
 <div class="container-fluid">

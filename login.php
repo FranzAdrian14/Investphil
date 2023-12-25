@@ -1,55 +1,8 @@
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<?php require_once('Controller/LoginController.php') ?>
+<?php require_once('Layout/header.php') ?>
+<title>PHILINVEST | User Authentication</title>
 
-  <title>INVESTPHIL</title>
- 	
-
-<meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
-  
-
-  
-
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-  <link href="assets/DataTables/datatables.min.css" rel="stylesheet">
-  <link href="assets/css/jquery.datetimepicker.min.css" rel="stylesheet">
-  <link href="assets/css/select2.min.css" rel="stylesheet">
-
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="assets/css/jquery-te-1.4.0.css">
-  
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/DataTables/datatables.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="assets/js/select2.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.datetimepicker.full.min.js"></script>
-    <script type="text/javascript" src="assets/font-awesome/js/all.min.js"></script>
-  <script type="text/javascript" src="assets/js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
-
-
-
-
-<style>
+  <style>
     body {
 		margin: 0;
       padding: 0;
@@ -151,7 +104,7 @@
     .btn-primary:hover {
       background-color: #0056b3;
     }
-  </style></head>
+  </style>
 
 
 
@@ -165,12 +118,16 @@
     <div id="login-right" class="bg-light">
         <div class="w-100">
             <h4 class="text-center" id="investphil-title"><b>ＩＮＶＥＳＴＰＨＩＬ</b></h4>
-			
-			<br>
-			<br>
-			<div class="card col-md-100">
+            <br>
+            <br>
+        <div class="card col-md-100">
 				<div class="card-body">
-					<form id="login-form">
+					<form method="post" id="login-form">
+            <?php if($messageFailed): ?>
+              <div class="alert alert-danger" role="alert">
+                <?php echo $messageFailed; ?>
+              </div>
+            <?php endif; ?>
 						<div class="form-group">
 							<label for="username" class="control-label">Username</label>
 							<input type="text" id="username" name="username" class="form-control" fdprocessedid="hfb4ad">
@@ -180,31 +137,16 @@
 							<input type="password" id="password" name="password" class="form-control" fdprocessedid="fz9rgg">
 						</div>
 						
-						<!-- Add role selection -->
+						<!-- Add role selection
 						<div class="form-group">
-    <label for="role" class="control-label">Select Role:</label>
-    <select id="role" name="role" class="form-control" onchange="redirectToDashboard()">
-        <option value="admin">Admin</option>
-        <option value="cashier">Cashier</option>
-    </select>
-</div>
+                <label for="role" class="control-label">Select Role:</label>
+                <select id="role" name="role" class="form-control" onchange="redirectToDashboard()">
+                    <option value="admin">Admin</option>
+                    <option value="cashier">Cashier</option>
+                </select>
+            </div> -->
 
-<script>
-    // Function to handle the redirection based on the selected role
-    function redirectToDashboard() {
-        var selectedRole = document.getElementById('role').value;
-
-        // Redirect based on the selected role
-        if (selectedRole === 'admin') {
-            window.location.href = 'index.php'; // Replace with your actual admin path
-        } else if (selectedRole === 'cashier') {
-            window.location.href = 'Cashier.php'; // Replace with your actual client path
-        } else {
-            alert('Invalid role selected');
-        }
-    }
-</script>
-						<center><button class="btn-sm btn-block btn-wave col-md-4 btn-primary" fdprocessedid="w8ms38">Login</button></center>
+						<button type="submit" class="btn-sm btn-block btn-wave col-md-4 btn-primary" fdprocessedid="w8ms38" name="login">Login</button>
 						<p>Don't have an account yet? <a href="register.php">Register</a>.</p>
 					</form>
 				</div>
@@ -214,29 +156,48 @@
 </main>
 
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<script>
+    // Function to handle the redirection based on the selected role
+    // function redirectToDashboard() {
+    //     var selectedRole = document.getElementById('role').value;
+    // 
+    //     // Redirect based on the selected role
+    //     if (selectedRole === 'admin') {
+    //         window.location.href = 'index.php'; // Replace with your actual admin path
+    //     } else if (selectedRole === 'cashier') {
+    //         window.location.href = 'Cashier.php'; // Replace with your actual client path
+    //     } else {
+    //         alert('Invalid role selected');
+    //     }
+    // }
+</script>
 
 <script>
-	$('#login-form').submit(function(e){
-		e.preventDefault()
-		$('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
-		if($(this).find('.alert-danger').length > 0 )
-			$(this).find('.alert-danger').remove();
-		$.ajax({
-			url:'ajax.php?action=login',
-			method:'POST',
-			data:$(this).serialize(),
-			error:err=>{
-				console.log(err)
-				$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
-			},
-			success:function(resp){
-				if(resp == 1){
-					location.href ='index.php?page=home';
-				}else{
-					$('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
-					$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
-				}
-			}
-		})
-	})
+	// $('#login-form').submit(function(e){
+	// 	e.preventDefault()
+	// 	$('#login-form button[type="button"]').attr('disabled',true).html('Logging in...');
+	// 	if($(this).find('.alert-danger').length > 0 )
+	// 		$(this).find('.alert-danger').remove();
+	// 	$.ajax({
+	// 		url:'ajax.php?action=login',
+	// 		method:'POST',
+	// 		data:$(this).serialize(),
+	// 		error:err=>{
+	// 			console.log(err)
+	// 			$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+	// 		},
+	// 		success:function(resp){
+	// 			if(resp == 1){
+	// 				location.href ='index.php?page=home';
+	// 			}else{
+	// 				$('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
+	// 				$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
+	// 			}
+	// 		}
+	// 	})
+	// })
 </script>
+
+</body>
+
+<?php require_once('Layout/footer.php') ?>
