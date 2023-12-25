@@ -1,6 +1,9 @@
 <?php 
 require_once('Controller/CheckAuthController.php');
+require_once('Controller/CategoryController.php');
+require_once('Controller/HouseController.php');
 include('db_connect.php');
+require_once('Layout/header.php');
 ?>
 <p?>
 	
@@ -25,16 +28,10 @@ include('db_connect.php');
 							<div class="form-group">
 								<label class="control-label">Category</label>
 								<select name="category_id" id="" class="custom-select" required>
-									<?php 
-									$categories = $conn->query("SELECT * FROM categories order by name asc");
-									if($categories->num_rows > 0):
-									while($row= $categories->fetch_assoc()) :
-									?>
-									<option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
-								<?php endwhile; ?>
-								<?php else: ?>
-									<option selected="" value="" disabled="">Please check the category list.</option>
-								<?php endif; ?>
+									<option selected>Please check the category list.</option>
+									<?php foreach($categories as $category): ?>
+									<option value="<?=$category->category_id;?>"><?=$category->category;?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group">
@@ -49,7 +46,7 @@ include('db_connect.php');
 					<div class="card-footer">
 						<div class="row">
 							<div class="col-md-12">
-								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
+								<button type="submit" class="btn btn-sm btn-primary col-sm-3 offset-md-3" name="save"> Save</button>
 								<button class="btn btn-sm btn-default col-sm-3" type="reset" > Cancel</button>
 							</div>
 						</div>
@@ -75,33 +72,30 @@ include('db_connect.php');
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
-								$i = 1;
-								$house = $conn->query("SELECT h.*,c.name as cname FROM houses h inner join categories c on c.id = h.category_id order by id asc");
-								while($row=$house->fetch_assoc()):
-								?>
+								<?php foreach($houses as $house): ?>
 								<tr>
-									<td class="text-center"><?php echo $i++ ?></td>
-									<td class="">
-										<p>House #: <b><?php echo $row['house_no'] ?></b></p>
-										<p><small>House Type: <b><?php echo $row['cname'] ?></b></small></p>
-										<p><small>Description: <b><?php echo $row['description'] ?></b></small></p>
-										<p><small>Price: <b><?php echo number_format($row['price'],2) ?></b></small></p>
+									<td><?=$house->house_id?></td>
+									<td>
+										House No: <?=$house->house_no?>
+										<br><br>
+										House Type: <?=$house->category?>
+										<br><br>
+										Description: <?=$house->description?>
+										<br><br>
+										Price: <?=$house->price?>
 									</td>
-									<td class="text-center">
-									<style>
-    .action-button {
-        margin: 0 5px; /* Adjust margin as needed */
-    }
-</style>
-
-<button class="btn btn-sm btn-primary edit_house action-button" type="button" data-id="<?php echo $row['id'] ?>" data-house_no="<?php echo $row['house_no'] ?>" data-description="<?php echo $row['description'] ?>" data-category_id="<?php echo $row['category_id'] ?>" data-price="<?php echo $row['price'] ?>">Edit</button>
-
-<button class="btn btn-sm btn-danger delete_house action-button" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-
+									<td>
+										<div class="btn-group" role=""group>
+											<!-- 
+												Example
+												<a href="filename.php?house_id=<?=$house->house_id?>" class="btn btn-outline-primary">View</a> 
+											-->
+											<a href="#" class="btn btn-outline-warning">Edit</a>
+											<a href="#" class="btn btn-outline-danger">Delete</a>
+										</div>
 									</td>
 								</tr>
-								<?php endwhile; ?>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -186,3 +180,4 @@ include('db_connect.php');
 	}
 	$('table').dataTable()
 </script>
+<?php require_once('Layout/footer.php'); ?>

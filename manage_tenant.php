@@ -1,6 +1,6 @@
 <?php 
 require_once('Controller/CheckAuthController.php');
-
+require_once('Controller/ClientController.php');
 include 'db_connect.php';
 
 require_once('Layout/header.php');
@@ -65,27 +65,27 @@ foreach($qry->fetch_array() as $k => $val){
 </div>
 <script>
 	
-	$('#manage-tenant').submit(function(e){
-		e.preventDefault()
-		start_load()
-		$('#msg').html('')
-		$.ajax({
-			url:'ajax.php?action=save_tenant',
-			data: new FormData($(this)[0]),
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    method: 'POST',
-		    type: 'POST',
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully saved.",'success')
-						setTimeout(function(){
-							location.reload()
-						},1000)
-				}
-			}
-		})
-	})
+	// $('#manage-tenant').submit(function(e){
+	// 	e.preventDefault()
+	// 	start_load()
+	// 	$('#msg').html('')
+	// 	$.ajax({
+	// 		url:'ajax.php?action=save_tenant',
+	// 		data: new FormData($(this)[0]),
+	// 	    cache: false,
+	// 	    contentType: false,
+	// 	    processData: false,
+	// 	    method: 'POST',
+	// 	    type: 'POST',
+	// 		success:function(resp){
+	// 			if(resp==1){
+	// 				alert_toast("Data successfully saved.",'success')
+	// 					setTimeout(function(){
+	// 						location.reload()
+	// 					},1000)
+	// 			}
+	// 		}
+	// 	})
+	// })
 </script>
 <?php require_once('Layout/footer.php'); ?>

@@ -5,8 +5,10 @@
 
 <title>PHILINVEST | Categories</title>
 
-<?php include 'topbar.php' ?>
-<?php include 'navbar.php' ?>
+<?php
+include 'navbar.php';
+include 'topbar.php';
+?>
 
 <div class="container-fluid">
 	
@@ -65,22 +67,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
-								$i = 1;
-								$category = $conn->query("SELECT * FROM categories order by id asc");
-								while($row=$category->fetch_assoc()):
-								?>
+								<?php foreach($categories as $category): ?>
 								<tr>
-									<td class="text-center"><?php echo $i++ ?></td>
-									<td class="">
-										<p><b><?php echo $row['name'] ?></b></p>
-									</td>
-									<td class="text-center">
-										<button class="btn btn-sm btn-primary edit_category" type="button" data-id="<?php echo $row['id'] ?>"  data-name="<?php echo $row['name'] ?>" >Edit</button>
-										<button class="btn btn-sm btn-danger delete_category" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+									<td><?=$category->category_id;?></td>
+									<td><?=$category->category;?></td>
+									<td>
+										<div class="btn-group" role=""group>
+											<!-- 
+												Example
+												<a href="filename.php?category_id=<?=$category->user_id?>" class="btn btn-outline-primary">View</a> 
+											-->
+											<a href="#" class="btn btn-outline-primary">View</a>
+											<a href="#" class="btn btn-outline-warning">Edit</a>
+											<a href="#" class="btn btn-outline-danger">Delete</a>
+										</div>
 									</td>
 								</tr>
-								<?php endwhile; ?>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
@@ -99,63 +102,63 @@
 </style>
 <script>
 	
-	$('#manage-category').submit(function(e){
-		e.preventDefault()
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=save_category',
-			data: new FormData($(this)[0]),
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    method: 'POST',
-		    type: 'POST',
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully added",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-				else if(resp==2){
-					alert_toast("Data successfully updated",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	})
-	$('.edit_category').click(function(){
-		start_load()
-		var cat = $('#manage-category')
-		cat.get(0).reset()
-		cat.find("[name='id']").val($(this).attr('data-id'))
-		cat.find("[name='name']").val($(this).attr('data-name'))
-		end_load()
-	})
-	$('.delete_category').click(function(){
-		_conf("Are you sure to delete this category?","delete_category",[$(this).attr('data-id')])
-	})
-	function delete_category($id){
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=delete_category',
-			method:'POST',
-			data:{id:$id},
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	}
-	$('table').dataTable()
+	// $('#manage-category').submit(function(e){
+	// 	e.preventDefault()
+	// 	start_load()
+	// 	$.ajax({
+	// 		url:'ajax.php?action=save_category',
+	// 		data: new FormData($(this)[0]),
+	// 	    cache: false,
+	// 	    contentType: false,
+	// 	    processData: false,
+	// 	    method: 'POST',
+	// 	    type: 'POST',
+	// 		success:function(resp){
+	// 			if(resp==1){
+	// 				alert_toast("Data successfully added",'success')
+	// 				setTimeout(function(){
+	// 					location.reload()
+	// 				},1500)
+// 
+	// 			}
+	// 			else if(resp==2){
+	// 				alert_toast("Data successfully updated",'success')
+	// 				setTimeout(function(){
+	// 					location.reload()
+	// 				},1500)
+// 
+	// 			}
+	// 		}
+	// 	})
+	// })
+	// $('.edit_category').click(function(){
+	// 	start_load()
+	// 	var cat = $('#manage-category')
+	// 	cat.get(0).reset()
+	// 	cat.find("[name='id']").val($(this).attr('data-id'))
+	// 	cat.find("[name='name']").val($(this).attr('data-name'))
+	// 	end_load()
+	// })
+	// $('.delete_category').click(function(){
+	// 	_conf("Are you sure to delete this category?","delete_category",[$(this).attr('data-id')])
+	// })
+	// function delete_category($id){
+	// 	start_load()
+	// 	$.ajax({
+	// 		url:'ajax.php?action=delete_category',
+	// 		method:'POST',
+	// 		data:{id:$id},
+	// 		success:function(resp){
+	// 			if(resp==1){
+	// 				alert_toast("Data successfully deleted",'success')
+	// 				setTimeout(function(){
+	// 					location.reload()
+	// 				},1500)
+// 
+	// 			}
+	// 		}
+	// 	})
+	// }
+	// $('table').dataTable()
 </script>
 <?php require_once('Layout/footer.php'); ?>

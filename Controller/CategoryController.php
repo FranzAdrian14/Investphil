@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require_once('./Database/connection_string.php');
 
 function validate($data) {
@@ -13,17 +11,30 @@ function validate($data) {
 $messageSuccess = '';
 $messageFailed = '';
 
+try {
+    $query = 'SELECT *
+                FROM tbl_categories;
+                ORDER BY category ASC;';
+
+    $statement = $connection->prepare($query);
+    if($statement->execute()) {
+        $categories = $statement->fetchAll(PDO::FETCH_OBJ);   
+    }
+} catch(PDOException $exception) {
+    $messageFailed = $exception->getMessage();
+}
+
 if(isset($_POST['save'])) {
     try {
         $category = validate($_POST['category']);
-        $query = 'INSERT INTO categories(`name`)
+        $query = 'INSERT INTO tbl_categories(category)
                                     VALUES(:category);';
         
         $statement = $connection->prepare($query);
         $statement->bindParam('category', $category, PDO::PARAM_STR);
 
         if($statement->execute()) {
-            $messageSuccess = 'Category successfully saved!';
+            header('location: categories.php');
         }
     } catch(PDOException $exception) {
         $messageFailed = $exception->getMessage();

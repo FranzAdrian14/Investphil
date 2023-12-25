@@ -1,11 +1,10 @@
 <?php
 require_once('Controller/CheckAuthController.php');
+require_once('Controller/ClientController.php');
 include('db_connect.php');
 require_once('Layout/header.php');
 ?>
 
-<?php include 'topbar.php' ?>
-<?php include 'navbar.php' ?>
 
 <div class="container-fluid">
 	
@@ -19,7 +18,7 @@ require_once('Layout/header.php');
 			<!-- FORM Panel -->
 
 			<!-- Table Panel -->
-			<div class="col-md-12">
+			<!--<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
 						<b>List of Client</b>
@@ -78,6 +77,58 @@ require_once('Layout/header.php');
 									</td>
 								</tr>
 								<?php endwhile; ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div> -->
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<b>List of Client</b>
+						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="manage_tenant.php" id="new_client">
+					<i class="fa fa-plus"></i> New Client
+				</a></span>
+					</div>
+					<div class="card-body">
+						<table class="table table-condensed table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>First Name</th>
+									<th>Middle Name</th>
+									<th>Last Name</th>
+									<th>Age</th>
+									<th>Gender</th>
+									<th>Email</th>
+									<th>Contact Number</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($clients as $client): ?>
+								<tr>
+									<td><?=$client->user_id;?></td>
+									<td><?=$client->first_name;?></td>
+									<td><?=$client->middle_name;?></td>
+									<td><?=$client->last_name;?></td>
+									<td><?=$client->age;?></td>
+									<td><?=$client->gender;?></td>
+									<td><?=$client->email;?></td>
+									<td><?=$client->contact_number;?></td>
+									<td>
+										<div class="btn-group" role=""group>
+											<!-- 
+												Example
+												<a href="filename.php?client_id=<?=$client->user_id?>" class="btn btn-outline-primary">View</a> 
+											-->
+											<a href="#" class="btn btn-outline-primary">View</a>
+											<a href="#" class="btn btn-outline-warning">Edit</a>
+											<a href="#" class="btn btn-outline-danger">Delete</a>
+										</div>
+									</td>
+								</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>
