@@ -17,7 +17,7 @@ if(isset($_POST['login'])) {
         $username = validate($_POST['username']);
         $password = validate($_POST['password']);
     
-        $query = 'SELECT *, gender, `role`
+        $query = 'SELECT *
                     FROM tbl_users
                     INNER JOIN tbl_genders ON tbl_users.gender_id = tbl_genders.gender_id
                     INNER JOIN tbl_user_roles ON tbl_users.user_role_id = tbl_user_roles.user_role_id

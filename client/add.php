@@ -1,11 +1,16 @@
-<?php require_once('Controller/RegisterController.php'); ?>
-<?php require_once('Layout/header.php'); ?>
+<?php require_once('../Controller/CheckAuthController.php'); ?>
+<?php require_once('../Controller/ClientController.php'); ?>
+
+<?php require_once('../Layout/header.php'); ?>
+
+<?php include '../navbar.php'; ?>
+<?php include '../topbar.php'; ?>
 
 <div class="container">
 	<form action="#" method="post">
-        <?php if($messageSuccess): ?>
+        <?php if(isset($_GET['messageSuccess'])): ?>
         <div class="alert alert-success mt-5">
-            <?php echo $messageSuccess; ?>
+            <?php echo $_GET['messageSuccess']; ?>
         </div>
         <?php elseif($messageFailed): ?>
         <div class="alert alert-danger mt-5">
@@ -65,24 +70,13 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<label for="user_role">User Role</label>
-				<select class="form-select" aria-label="role" id="user_role_id" name="user_role_id">
-                    <option selected>Select user role</option>
-                    <?php foreach($userRoles as $userRole): ?>
-					<option value="<?=$userRole->user_role_id?>"><?=$userRole->role?></option>
-                    <?php endforeach; ?>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<a href="register.php" class="btn btn-secondary mt-3 w-100">Back</a>
+				<a href="list.php" class="btn btn-secondary mt-3 w-100">Back</a>
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-primary mt-3 w-100" name="save">Save</button>
+				<button type="submit" class="btn btn-primary mt-3 w-100" name="add_client_save">Save</button>
 			</div>
 		</div>
 	</form>
 </div>
 
-<?php require_once('Layout/footer.php'); ?>
+<?php require_once('../Layout/footer.php'); ?>

@@ -18,7 +18,7 @@
 				<a href="home.php" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-tachometer-alt "></i></span> Dashboard</a>
 				<a href="categories.php" class="nav-item nav-categories"><span class='icon-field'><i class="fa fa-th-list "></i></span> House Type</a>
 				<a href="houses.php" class="nav-item nav-houses"><span class='icon-field'><i class="fa fa-home "></i></span> House Module</a>
-				<a href="tenants.php" class="nav-item nav-tenants"><span class='icon-field'><i class="fa fa-user-friends "></i></span> Client Module</a>
+				<a href="client/list.php" class="nav-item nav-tenants"><span class='icon-field'><i class="fa fa-user-friends "></i></span> Client Module</a>
 				<a href="invoices.php" class="nav-item nav-invoices"><span class='icon-field'><i class="fa fa-file-invoice "></i></span> Payment Module</a>
 				<a href="reports.php" class="nav-item nav-reports"><span class='icon-field'><i class="fa fa-list-alt "></i></span> Report Module</a>
 				<a href="users.php" class="nav-item nav-users"><span class='icon-field'><i class="fa fa-users "></i></span> Set up Module</a>
@@ -27,7 +27,7 @@
 				<a href="home.php" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-tachometer-alt "></i></span> Dashboard</a>
 				<a href="categories.php" class="nav-item nav-categories"><span class='icon-field'><i class="fa fa-th-list "></i></span> House Type</a>
 				<a href="houses.php" class="nav-item nav-houses"><span class='icon-field'><i class="fa fa-home "></i></span> House Module</a>
-				<a href="tenants.php" class="nav-item nav-tenants"><span class='icon-field'><i class="fa fa-user-friends "></i></span> Client Module</a>
+				<a href="client/list.php" class="nav-item nav-tenants"><span class='icon-field'><i class="fa fa-user-friends "></i></span> Client Module</a>
 				<a href="invoices.php" class="nav-item nav-invoices"><span class='icon-field'><i class="fa fa-file-invoice "></i></span> Payment Module</a>
 				<a href="#" class="nav-item nav-users"><span class='icon-field'><i class="fa fa-bell "></i></span> Notification Module</a>
 			<?php else: ?>
