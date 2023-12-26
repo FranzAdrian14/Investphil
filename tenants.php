@@ -3,6 +3,9 @@ require_once('Controller/CheckAuthController.php');
 require_once('Controller/ClientController.php');
 include('db_connect.php');
 require_once('Layout/header.php');
+
+include 'navbar.php';
+include 'topbar.php';
 ?>
 
 

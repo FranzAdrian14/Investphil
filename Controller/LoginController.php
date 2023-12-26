@@ -51,6 +51,14 @@ if(isset($_POST['login'])) {
 
                 $_SESSION['isLoggedIn'] = true;
 
+                // if($user->role == 'Admin') {
+                //     // header('location: index.php');
+                // } elseif($user->role == 'Cashier') {
+                //     // header('location: cashier_dashboard.php');
+                // } else {
+                //     // header('location: client_dashboard.php');
+                // }
+
                 header('location: index.php');
             } else {
                 $messageFailed = 'Username or password is incorrect!';

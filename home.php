@@ -58,7 +58,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="index.php?page=houses" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
+                                            <a href="houses.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="index.php?page=tenants" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
+                                            <a href="tenants.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="index.php?page=invoices" class="text-primary float-right">View Payments <span class="fa fa-angle-right"></span></a>
+                                            <a href="invoices.php" class="text-primary float-right">View Payments <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
