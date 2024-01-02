@@ -73,7 +73,7 @@
 				<a href="list.php" class="btn btn-secondary mt-3 w-100">Back</a>
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-primary mt-3 w-100" name="add_client_save">Save</button>
+				<button type="submit" class="btn btn-primary mt-3 w-100" name="add_client">Save</button>
 			</div>
 		</div>
 	</form>

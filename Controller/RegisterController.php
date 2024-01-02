@@ -2,13 +2,6 @@
 
 require_once('./Database/connection_string.php');
 
-function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 $messageSuccess = '';
 $messageFailed = '';
 
@@ -39,8 +32,15 @@ try {
     $messageFailed = $exception->getMessage();
 }
 
-if(isset($_POST['save'])) {
+if(isset($_POST['register'])) {
     try {
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
         $firstName = validate($_POST['first_name']);
         $middleName = validate($_POST['middle_name']);
         $lastName = validate($_POST['last_name']);

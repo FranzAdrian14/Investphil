@@ -2,17 +2,10 @@
 
 require_once('../Database/connection_string.php');
 
-function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 $messageFailed = '';
 
+// Load clients
 try {
-    // Load clients
     $query = 'SELECT *
                 FROM tbl_users
                 INNER JOIN tbl_genders ON tbl_users.gender_id = tbl_genders.gender_id
@@ -45,30 +38,23 @@ try {
     if($statement->execute()) {
         $userRoles = $statement->fetchAll(PDO::FETCH_OBJ);
     }
+} catch(PDOException $exception) {
+    $messageFailed = $exception->getMessage();
+}
 
-    // Get client
-    if(isset($_GET['client_id'])) {
-        $userId = validate($_GET['client_id']);
-
-        $query = 'SELECT *
-                    FROM tbl_users
-                    INNER JOIN tbl_genders ON tbl_users.gender_id = tbl_genders.gender_id
-                    INNER JOIN tbl_user_roles ON tbl_users.user_role_id = tbl_user_roles.user_role_id 
-                    WHERE user_id = :user_id;';
-        
-        $statement = $connection->prepare($query);
-        $statement->bindParam('user_id', $userId, PDO::PARAM_INT);
-
-        if($statement->execute()) {
-            $client = $statement->fetch(PDO::FETCH_OBJ);
+// Add client
+if(isset($_POST['add_client'])) {
+    try {
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
         }
-    }
 
-    // Add client
-    if(isset($_POST['add_client_save'])) {
         $query = 'SELECT *
                     FROM tbl_user_roles
-                    WHERE role = "Client";';
+                    WHERE `role` = "Client";';
 
         $statement = $connection->prepare($query);
 
@@ -105,16 +91,55 @@ try {
             $statement->bindParam('user_role_id', $userRoleId, PDO::PARAM_INT);
 
             if($statement->execute()) {
-                $messageSuccess = 'User successfully created!';
                 header('location: add_client.php?messageSuccess=Client successfully saved!');
             }
         } else {
             $messageFailed = 'Password do not match!';
         }
+    } catch(PDOException $exception) {
+        $messageFailed = $exception->getMessage();
     }
+}
 
-    // Update client
-    if(isset($_POST['edit_client_save'])) {
+// Get client
+if(isset($_GET['client_id'])) {
+    try {
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        $userId = validate($_GET['client_id']);
+
+        $query = 'SELECT *
+                    FROM tbl_users
+                    INNER JOIN tbl_genders ON tbl_users.gender_id = tbl_genders.gender_id
+                    INNER JOIN tbl_user_roles ON tbl_users.user_role_id = tbl_user_roles.user_role_id 
+                    WHERE user_id = :user_id;';
+        
+        $statement = $connection->prepare($query);
+        $statement->bindParam('user_id', $userId, PDO::PARAM_INT);
+
+        if($statement->execute()) {
+            $client = $statement->fetch(PDO::FETCH_OBJ);
+        }
+    } catch(PDOException $exception) {
+        $messageFailed = $exception->getMessage();
+    }
+}
+
+// Update client
+if(isset($_POST['edit_client'])) {
+    try {
+            function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
         $userId = validate($_GET['client_id']);
 
         $firstName = validate($_POST['first_name']);
@@ -145,8 +170,7 @@ try {
         if($statement->execute()) {
             header('location: list.php?messageSuccess=Client successfully updated!');
         }
+    } catch(PDOException $exception) {
+        $messageFailed = $exception->getMessage();
     }
-
-} catch(PDOException $exception) {
-    $messageFailed = $exception->getMessage();
 }

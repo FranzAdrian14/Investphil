@@ -79,7 +79,7 @@
 				<a href="register.php" class="btn btn-secondary mt-3 w-100">Back</a>
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-primary mt-3 w-100" name="save">Save</button>
+				<button type="submit" class="btn btn-primary mt-3 w-100" name="register">Save</button>
 			</div>
 		</div>
 	</form>

@@ -1,16 +1,9 @@
 <?php
-require_once('./Database/connection_string.php');
+require_once('../Database/connection_string.php');
 
-function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-$messageSuccess = '';
 $messageFailed = '';
 
+// Load categories
 try {
     $query = 'SELECT *
                 FROM tbl_categories;
@@ -24,8 +17,16 @@ try {
     $messageFailed = $exception->getMessage();
 }
 
-if(isset($_POST['save'])) {
+// Add category
+if(isset($_POST['save_category'])) {
     try {
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
         $category = validate($_POST['category']);
         $query = 'INSERT INTO tbl_categories(category)
                                     VALUES(:category);';
@@ -34,7 +35,7 @@ if(isset($_POST['save'])) {
         $statement->bindParam('category', $category, PDO::PARAM_STR);
 
         if($statement->execute()) {
-            header('location: categories.php');
+            header('location: categories.php?messageSuccess=Category successfully added!');
         }
     } catch(PDOException $exception) {
         $messageFailed = $exception->getMessage();

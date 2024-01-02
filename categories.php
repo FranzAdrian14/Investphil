@@ -34,7 +34,7 @@ include 'topbar.php';
 								</div>
 								<?php endif; ?>
 								<label class="control-label">Name</label>
-								<input type="text" class="form-control" name="category">
+								<input type="text" class="form-control" name="save_category">
 							</div>
 					</div>
 							

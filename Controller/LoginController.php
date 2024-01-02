@@ -3,17 +3,17 @@ session_start();
 
 require_once('./Database/connection_string.php');
 
-function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 $messageFailed = '';
 
 if(isset($_POST['login'])) {
     try {
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
         $username = validate($_POST['username']);
         $password = validate($_POST['password']);
     
@@ -50,14 +50,6 @@ if(isset($_POST['login'])) {
                 }
 
                 $_SESSION['isLoggedIn'] = true;
-
-                // if($user->role == 'Admin') {
-                //     // header('location: index.php');
-                // } elseif($user->role == 'Cashier') {
-                //     // header('location: cashier_dashboard.php');
-                // } else {
-                //     // header('location: client_dashboard.php');
-                // }
 
                 header('location: index.php');
             } else {

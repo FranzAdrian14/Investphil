@@ -70,7 +70,7 @@
                                     <div class="card-body text-white">
                                         <span class="float-right summary_icon"> <i class="fa fa-user-friends "></i></span>
                                         <h4><b>
-                                            <?php echo $conn->query("SELECT * FROM tenants where status = 1 ")->num_rows ?>
+                                            <?php echo $conn->query("SELECT * FROM tbl_users")->num_rows ?>
                                         </b></h4>
                                         <p><b>Total User</b></p>
                                     </div>
@@ -78,7 +78,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="tenants.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
+                                            <a href="client/list.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
