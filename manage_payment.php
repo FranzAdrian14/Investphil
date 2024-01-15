@@ -1,12 +1,5 @@
-<?php 
-include 'db_connect.php'; 
-if(isset($_GET['id'])){
-$qry = $conn->query("SELECT * FROM payments where id= ".$_GET['id']);
-foreach($qry->fetch_array() as $k => $val){
-    $$k=$val;
-}
-}
-?>
+<?php require_once('Layout/header.php'); ?>
+
 <div class="container-fluid">
     <form action="" id="manage-payment">
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -113,3 +106,4 @@ foreach($qry->fetch_array() as $k => $val){
         })
     })
 </script>
+<?php require_once('Layout/footer.php'); ?>

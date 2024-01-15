@@ -9,6 +9,7 @@ try {
     $query = 'SELECT *
                 FROM tbl_houses
                 INNER JOIN tbl_categories ON tbl_houses.category_id = tbl_categories.category_id
+                WHERE tbl_houses.is_deleted = 0
                 ORDER BY category AND house_no ASC;';
     
     $statement = $connection->prepare($query);
@@ -102,6 +103,25 @@ if(isset($_POST['edit_house'])) {
 
         if($statement->execute()) {
             header('location: add.php?messageSuccess=House successfully updated!');
+        }
+    } catch(PDOException $exception) {
+        $messageFailed = $exception->getMessage();
+    }
+}
+
+if(isset($_POST['delete_house'])) {
+    try {
+        $houseId = validate($_GET['house_id']);
+
+        $query = 'UPDATE tbl_houses
+                    SET is_deleted = 1
+                    WHERE house_id = :house_id;';
+
+        $statement = $connection->prepare($query);
+        $statement->bindParam('house_id', $houseId, PDO::PARAM_INT);
+
+        if($statement->execute()) {
+            header('location: add.php?messageSuccess=House successfully deleted!');
         }
     } catch(PDOException $exception) {
         $messageFailed = $exception->getMessage();

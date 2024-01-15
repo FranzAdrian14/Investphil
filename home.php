@@ -58,7 +58,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="houses.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
+                                            <a href="house/add.php" class="text-primary float-right">View List <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,22 +1,17 @@
+<?php require_once('../Controller/HouseController.php'); ?>
+
 <?php require_once('../Layout/header.php'); ?>
 
-<title>Confirmation</title>
-
-<div class="modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Confirmation</h5>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete?</p>
-            </div>
-            <div class="modal-footer">
-                <a href="list.php" class="btn btn-primary" data-bs-dismiss="modal">Back</a>
-                <form action="#" method="post">
-                    <button type="submit" class="btn btn-danger" name="confirm">Yes</button>
-                </form>
-            </div>
+<div class="container">
+    <h3 class="mt-5">Are you sure you want to delete it?</h3>
+    <div class="row">
+        <div class="col">
+            <a href="add.php" class="btn btn-secondary w-100">No</a>
+        </div>
+        <div class="col">
+            <form action="#" method="post">
+                <button type="submit" class="btn btn-danger w-100" name="delete_house">Yes</button>
+            </form>
         </div>
     </div>
 </div>
